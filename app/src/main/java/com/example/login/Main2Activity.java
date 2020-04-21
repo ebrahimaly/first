@@ -31,7 +31,7 @@ public class Main2Activity extends AppCompatActivity {
                     Toast.makeText(Main2Activity.this, "name required", Toast.LENGTH_SHORT).show();
                 }
                else if(email.equals("")){
-                    Toast.makeText(Main2Activity.this, "email required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main2Activity.this, "email  is required", Toast.LENGTH_SHORT).show();
                 }
                 else if(pass.equals("")){
                     Toast.makeText(Main2Activity.this, "password required", Toast.LENGTH_SHORT).show();
