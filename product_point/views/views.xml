@@ -1,0 +1,67 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="product_point.list">
+      <field name="name">product point</field>
+      <field name="model">product_point</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="points"/>
+          <field name="last_change"/>
+        </tree>
+      </field>
+    </record>
+    <!-- explicit form view definition -->
+    <record model="ir.ui.view" id="product_point.form">
+      <field name="name">product point</field>
+      <field name="model">product_point</field>
+      <field name="arch" type="xml">
+        <form>
+              <header>
+                        <button name="set_confirm" string="Confirmed"  type="object" class="oe_highlight"/>
+                        <button name="set_cancel" string="Cancel"  type="object" class="oe_highlight"/>
+                        <field name="status" widget="statusbar" />/>
+                    </header>
+          <sheet>
+            <group>
+              <group>
+                <field name="name" />
+                <field name="start_date"/>
+                <field name="end_date"/>
+                </group>
+                <group>
+                <field name="points"/>
+                <field name="last_change"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+        <!-- explicit search view definition -->
+    <record model="ir.ui.view" id="product_point.search">
+      <field name="name">product point</field>
+      <field name="model">product_point</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="last_change"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="product_point.action_window">
+      <field name="name">product point</field>
+      <field name="res_model">product_point</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Product Point"  id="product_point.menu_root" action="product_point.action_window"/>
+
+  </data>
+</odoo>

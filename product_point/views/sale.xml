@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_point.line">
+          <field name="name">product point</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_order_form"/>
+          <field name="arch" type="xml">
+
+          <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+              <field name="product_point"/>
+          </xpath>
+          <field name="partner_id" position="after">
+              <field name="total_point"/>
+          </field>
+
+      </field>
+    </record>
+
+     <record model="ir.module.category" id="module_category_website_custom">
+        <field name="name">product point</field>
+        <field name="sequence">200</field>
+        <field name="visible" eval="0" />
+     </record>
+      <record id="group_delete_sale" model="res.groups">
+         <field name="name">Product Point Delete </field>
+
+      </record>
+      <record id="sale_rule_personal_lead1" model="ir.rule">
+        <field name="name">sale delete</field>
+        <field ref="model_sale_order" name="model_id"/>
+        <field name="groups" eval="[(4, ref('group_delete_sale'))]"/>
+          <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+     </record>
+    </data>
+</odoo>

@@ -1,0 +1,77 @@
+<odoo>
+    <data>
+        <report
+                id="report_product_point"
+                model="product_point"
+                string="product point"
+                name="product_point.report_beyond"
+                file="product_point.report_beyond"
+                report_type="qweb-pdf"/>
+
+           <template id="report_beyond">
+            <t t-call="web.html_container">
+              <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                     <div style="text-align:center;" class="test">
+                         <strong style="font-size:40px">Product Points </strong>
+                         <hr/>
+                     </div>
+                          <div style="text-align:left;">
+                            <td  style="border-bottom: solid #5A5C5C 1px;padding:1px;width:50% ">
+                                Product Name :
+                            </td>
+                            <td style="border-bottom: solid #5A5C5C 1px;padding:1px;width:50%">
+                                <t t-esc="doc.name.name"/>
+                            </td>
+                            <br/>
+                            <br/>
+                            <td  style="border-bottom: solid #5A5C5C 1px;padding:1px;width:50% ">
+                                Start Date :
+                            </td>
+                            <td style="border-bottom: solid #5A5C5C 1px;padding:1px;width:33%">
+                                <t t-esc="doc.start_date"/>
+
+                            </td>
+                            <br/>
+                            <br/>
+
+                            <td  style="border-bottom: solid #5A5C5C 1px;  padding:1px;width:50% ">
+                                Ended Date :
+                            </td>
+                            <td style="border-bottom: solid #5A5C5C 1px;padding:1px;width:33%">
+                                <t t-esc="doc.end_date"/>
+                            </td>
+                            <br/>
+                            <br/>
+                              <td  style="border-bottom: solid #5A5C5C 1px;  padding:1px;width:50% ">
+                                Points :
+                            </td>
+                            <td style="border-bottom: solid #5A5C5C 1px;padding:1px;width:33%">
+                                <t t-esc="doc.points"/>
+                            </td>
+                            <br/>
+                            <br/>
+                              <td  style="border-bottom: solid #5A5C5C 1px;  padding:1px;width:50% ">
+                                Last Change:
+                            </td>
+                            <td style="border-bottom: solid #5A5C5C 1px;padding:1px;width:33%">
+                                <t t-esc="doc.last_change.name"/>
+                            </td>
+                            <br/>
+                            <br/>
+
+                        </div>
+                        <br/>
+                        <br/>
+                    </div>
+
+                </t>
+
+            </t>
+
+
+            </t>
+        </template>
+    </data>
+</odoo>
