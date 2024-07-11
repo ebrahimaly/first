@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+         <record model="ir.ui.view" id="change_note_tree_view">
+              <field name="name">change request</field>
+              <field name="model">change.request</field>
+              <field name="arch" type="xml">
+                  <tree>
+                      <field name="name"/>
+                      <field name="request_id"/>
+                      <field name="approve_id"/>
+                      <field name="type"/>
+                      <field name="department_id"/>
+                      <field name="create_date"/>
+                  </tree>
+              </field>
+         </record>
+
+         <record model="ir.ui.view" id="change_note_form_view">
+              <field name="name">change request</field>
+              <field name="model">change.request</field>
+              <field name="arch" type="xml">
+                  <form>
+                      <header>
+                          <field name="state" widget="statusbar"  nolabel="1" readonly="1" />
+                      </header>
+                       <sheet>
+                           <div class="oe_title">
+                                <h1>
+                                    <field name="name" placeholder="e.g. Onboarding"/>
+                                </h1>
+                            </div>
+                           <group>
+                               <group>
+                                   <field name="request_id"/>
+                                   <field name="approve_id"/>
+                                   <field name="type"/>
+                               </group>
+                               <group>
+                                   <field name="create_date"/>
+                                   <field name="department_id"/>
+                               </group>
+                           </group>
+                           <field name="document"/>
+
+                       </sheet>
+                      <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+                  </form>
+              </field>
+         </record>
+
+
+
+
+        <record model="ir.actions.act_window" id="change_request_note.action_window">
+            <field name="name">Change Request Note</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">change.request</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+        <menuitem name="Change Request Note" id="change_request_menu_root" action="change_request_note.action_window"/>
+
+
+        <record id="change_request_sequence" model="ir.sequence">
+            <field name="name">change_request</field>
+            <field name="code">change.request</field>
+            <field name="prefix">Req/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+
+
+
+
+</odoo>
