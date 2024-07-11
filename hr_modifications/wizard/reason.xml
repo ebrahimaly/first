@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_modifications_reason">
+              <field name="name">reason</field>
+              <field name="model">stage_reason</field>
+              <field name="arch" type="xml">
+                    <form>
+                        <sheet>
+                            <group>
+                                <field name="reason"/>
+                            </group>
+                        </sheet>
+                         <footer>
+        <!--                        <button name="action_register_departure" string="Apply" type="object" class="oe_highlight" data-hotkey="q"/>-->
+                                <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                         </footer>
+                    </form>
+              </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="reason_action_window">
+          <field name="name">hr_modifications window</field>
+          <field name="res_model">stage_reason</field>
+          <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>
