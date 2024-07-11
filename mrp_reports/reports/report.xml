@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <template id="mrp_weblearns_layout">
+          <div class="header">
+            <div class="row"  style="font-family:'Tajawal'">
+
+                <div width="25%" class="col-5" name="qr_code">
+                    <img t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 120px;" alt="Logo"/>
+                </div>
+
+                <div width="60%" class="col-4 text-center" style="font-size:50px; font-family:'Tajawal; font-weight: bold;margin:20px;">
+
+                </div>
+
+                <div width="25%" class="col-4 text-right">
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="article o_report_layout_standard">
+            <t t-out="0"/>
+        </div>
+         <div class="footer o_standard_footer">
+         </div>
+    </template>
+
+    <template id="print_report_pdf_new_mrp_productions">
+         <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                     <t t-call="mrp_reports.mrp_weblearns_layout">
+                         <div class="page">
+                             <br></br>
+                             <br></br>
+                             <br></br>
+                             <div style="text-align:right">
+                                 <span>Order Number:</span>
+                                 <span><t t-esc="o.name"/></span>
+                             </div>
+                         </div>
+                         <br></br>
+                         <div style="text-align:center">
+                             <u>
+                                Manufacturing Orders
+                             </u>
+                         </div>
+                         <br></br>
+                           <div>
+                              <table width="100%" style="border: 1pt solid black;font-family:arial;">
+                                  <thead>
+                                      <tr style="height:15pt;">
+                                          <th width="40%" style="text-align:left;padding:10px;">Product Name: <t t-esc='o.product_id.name'/></th>
+                                          <th  width="20%" style="text-align:left;padding:10px;">Batch No:</th>
+                                          <th  width="40%" style="text-align:left;padding:10px;">Date Issued: <t t-esc='o.date_planned_start'/></th>
+                                      </tr>
+                                      <tr  style=" height:15pt;">
+                                          <th  width="40%" style="text-align:left;padding:10px;">Product Code:  <t t-esc='o.product_id.default_code'/></th>
+                                          <th  width="20%" style="text-align:left;padding:10px;">Batch Size: <t t-esc='o.product_qty'/></th>
+                                          <th  width="40%" style="text-align:left;padding:10px;">Market Local:  <t t-esc='o.local'/></th>
+
+                                     </tr>
+                                      <tr style="height:15pt;">
+                                          <th width="40%" style="text-align:left;padding:10px;">Shelf Life: <t t-esc='o.product_id.shelf_life'/><t t-esc='o.product_id.period_type'/></th>
+                                          <th  width="20%" style="text-align:left;padding:10px;">MFG Date:</th>
+                                          <th width="40" style="text-align:left;padding:10px;">EXp Date:
+                                              <span t-if="o.product_id.period_type=='month'">
+                                                  <t t-esc='o.date_planned_start+ relativedelta(months=o.product_id.shelf_life)'/>
+
+                                              </span>
+                                              <span t-if="o.product_id.period_type=='day'">
+                                                     <t t-esc='o.date_planned_start+ relativedelta(days=o.product_id.shelf_life)'/>
+                                              </span>
+                                              <span t-if="o.product_id.period_type=='year'">
+                                                  <t t-esc='o.date_planned_start+ relativedelta(years=o.product_id.shelf_life)'/>
+
+                                              </span>
+                                              <span t-if="o.product_id.period_type=='week'">
+                                                   <t t-esc='o.date_planned_start+ relativedelta(weeks=o.product_id.shelf_life)'/>
+
+                                              </span>
+
+                                          </th>
+
+                                      </tr>
+                                      <tr style="height:15pt;">
+                                          <th  width="50%" style="text-align:left;padding:10px;">Price/Box:  <t t-esc='o.product_id.lst_price'/></th>
+                                          <th  width="20%" style="text-align:left;padding:10px;">Price/Blister:</th>
+
+                                      </tr>
+                                  </thead>
+                               </table>
+                               <br></br>
+                               <br></br>
+                               <br></br>
+                               <br></br>
+                               <table width="100%">
+                                     <thead>
+                                         <tr  style=" height:20pt;padding-top:20px; text-align:center;">
+                                             <th width="5%">Ser.No</th>
+                                             <th width="20%">Item Name</th>
+                                             <th width="10%">Item Code</th>
+
+                                             <th width="10%">Quantity Req</th>
+                                             <th width="5%">Quantity Issued</th>
+
+                                             <th width="5%">U/M</th>
+                                             <th width="10%">Lot.No</th>
+                                             <th width="10%">Qc.No</th>
+                                             <th width="15%">Exp.date</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody>
+                                          <t t-set="num" t-value="0"/>
+                                        <t t-foreach="o.move_raw_ids" t-as="com">
+                                             <t t-set="num" t-value="num+1"/>
+
+                                             <tr  style=" height:20pt;text-align:center">
+                                                 <td>
+                                                    <t t-esc="num"/>
+                                                 </td>
+                                                 <td>
+                                                    <t t-esc="com.product_id.name"/>
+                                                 </td>
+                                                 <td>
+                                                    <t t-esc="com.product_id.default_code"/>
+                                                 </td>
+                                                 <td>
+                                                    <t t-esc="com.product_uom_qty"/>
+                                                 </td>
+                                                 <td>
+                                                    <t t-esc="com.quantity_done"/>
+                                                 </td>
+                                                 <td>
+                                                    <t t-esc="com.product_uom.name"/>
+                                                 </td>
+                                                 <td>
+                                                   <t t-foreach="com.lot_ids" t-as="lot">
+                                                        <t t-esc="lot.name"/>
+                                                   </t>
+                                                 </td>
+                                                 <td>
+
+                                                 </td>
+                                                 <td>
+                                                        <t t-foreach="com.lot_ids" t-as="lot">
+                                                        <t t-esc="lot.expiration_date"/>
+                                                   </t>
+                                                 </td>
+
+                                             </tr>
+
+                                        </t>
+
+                                     </tbody>
+                              </table>
+                               <br></br>
+                               <br></br>
+                               <br></br>
+                               <br></br>
+
+                               <strong>Remarks:</strong>
+
+                               <br></br>
+                                <table width="100%">
+                                     <thead>
+                                         <tr  style=" height:50pt;padding-top:20px; text-align:center;">
+                                             <th width="20%"><u>Planning:</u></th>
+                                             <th width="20%"><u>Production:</u></th>
+                                             <th width="20%"><u>Quality Assurance:</u></th>
+                                             <th width="20%"><u>Material Delivered By:</u></th>
+                                             <th width="20%"><u>Material Received By:</u></th>
+
+                                         </tr>
+                                     </thead>
+                                </table>
+
+
+
+                         </div>
+
+                     </t>
+                </t>
+         </t>
+    </template>
+
+</odoo>

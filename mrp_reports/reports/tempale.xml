@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="paperformat_pdf_mrp2" model="report.paperformat">
+            <field name="name">mrp Production</field>
+            <field name="default" eval="True"/>
+            <field name="header_line" eval="False"/>
+            <field name="format">custom</field>
+            <field name="dpi">90</field>
+            <field name="page_height">250</field>
+            <field name="page_width">230</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_spacing">1000</field>
+             <field name="header_line" eval="False"/>
+        </record>
+
+         <record id="print_report_mrp" model="ir.actions.report">
+            <field name="name">Mrp Productions PDf</field>
+            <field name="model">mrp.production</field>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mrp_reports.print_report_pdf_new_mrp_productions</field>
+            <field name="report_file">mrp_reports.print_report_pdf_new_mrp_productions</field>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="mrp_reports.paperformat_pdf_mrp2"/>
+
+        </record>
+</odoo>

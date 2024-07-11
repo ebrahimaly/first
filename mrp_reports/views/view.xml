@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+         <record model="ir.ui.view" id="product1_product_template">
+              <field name="name">Product</field>
+              <field name="model">product.product</field>
+              <field name="inherit_id" ref="product.product_normal_form_view"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//field[@name='barcode']" position="after">
+                       <label for="shelf_life" string="shelf Life"/>
+                            <div class="d-flex flex-column flex-shrink-1">
+                                <div class="d-flex">
+                                    <field name="shelf_life" class="oe_inline"/>
+                                    <i class="fa fa-long-arrow-right my-1 mx-1" aria-label="Arrow icon" title="Arrow"/>
+                                    <field name="period_type"  class="flex-shrink-1 oe_inline"/>
+                                </div>
+                            </div>
+                  </xpath>
+              </field>
+         </record>
+         <record model="ir.ui.view" id="mrp_local_market">
+              <field name="name">Product</field>
+              <field name="model">mrp.production</field>
+              <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//field[@name='user_id']" position="after">
+                      <field name="local"/>
+                  </xpath>
+              </field>
+         </record>
+    </data>
+</odoo>
