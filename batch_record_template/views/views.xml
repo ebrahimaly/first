@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="batch_record_template_list">
+            <field name="name">Batch Record Template list</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                 <field name="name" position="after">
+                    <field name="is_approve" invisible="1"/>
+                    <field name="confirm" invisible="1"/>
+                 </field>
+                 <xpath expr="//button[@name='action_confirm']" position="after">
+                      <button name="manger_approve" attrs="{'invisible': [('is_approve', '=', True)]}" string="Manager Approve" type="object" class="oe_highlight" data-hotkey="v"/>
+                      <button name="generate_br" attrs="{'invisible': [('state', '!=', 'confirmed')]}" string="Generate BR" type="object" class="oe_highlight" data-hotkey="v"/>
+                 </xpath>
+                  <xpath expr="//button[@name='action_confirm']" position="attributes">
+                      <attribute name="attrs">{'invisible': [('confirm','=', False)]}</attribute>
+                      <attribute name="string">Approve</attribute>
+
+                  </xpath>
+
+
+            </field>
+        </record>
+        <record model="ir.ui.view" id="batch_record_template_list1">
+            <field name="name">Batch Record Template list</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_maintenance.mrp_production_view_form_inherit_maintenance"/>
+            <field name="arch" type="xml">
+
+                 <xpath expr="//button[@name='button_maintenance_req']" position="attributes">
+                      <attribute name="attrs">{'invisible': [('is_approve','=', False)]}</attribute>
+                 </xpath>
+
+            </field>
+        </record>
+
+  </data>
+</odoo>

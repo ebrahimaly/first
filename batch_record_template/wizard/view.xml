@@ -1,0 +1,79 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+      <record model="ir.ui.view" id="batch_record_template_br">
+          <field name="name">Batch_Record_Template list</field>
+          <field name="model">batches.request</field>
+          <field name="arch" type="xml">
+              <form>
+                 <sheet>
+                   <group>
+                       <group>
+                          <field name="name"/>
+                       </group>
+                       <group>
+                          <field name="date"/>
+                       </group>
+                       <group>
+                          <field name="partner_id"/>
+                       </group>
+                       <group>
+                          <field name="to"/>
+                       </group>
+                   </group>
+                   <group>
+                       <group>
+                         <field name="product_id"/>
+                         <field name="code"/>
+                         <field name="size"/>
+                         <field name="batch_no"/>
+                         <field name="ref"/>
+                         <field name="market"/>
+                         <field name="remark"/>
+                       </group>
+                   </group>
+                       <group>
+                         <field name="request_by"/>
+                         <field name="create_date"/>
+                       </group>
+                       <br></br>
+                       <group>
+                         <field name="received_by"/>
+                         <field name="received_date"/>
+                       </group>
+                       <group>
+                         <field name="remark_received"/>
+                       </group>
+                 </sheet>
+
+              </form>
+          </field>
+      </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="batch_record_template.action_window">
+      <field name="name">Batch_Record_Template window</field>
+      <field name="res_model">batches.request</field>
+      <field name="view_mode">form</field>
+    </record>
+
+
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="Batch_Record_Template" id="batch_record_template.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="batch_record_template.menu_1" parent="batch_record_template.menu_root"/>
+    <menuitem name="Menu 2" id="batch_record_template.menu_2" parent="batch_record_template.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="batch_record_template.menu_1_list" parent="batch_record_template.menu_1"
+              action="batch_record_template.action_window"/>
+    <menuitem name="Server to list" id="batch_record_template" parent="batch_record_template.menu_2"
+              action="batch_record_template.action_server"/>
+-->
+  </data>
+</odoo>
